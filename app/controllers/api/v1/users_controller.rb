@@ -12,7 +12,15 @@ class Api::V1::UsersController < ApplicationController
       else
         render json: { errors: @user.errors.full_messages },
         status: :unprocessible_entity
+      end
     end
+
+    def create
+      @user = User.create!(user_params)
+      # render json: @user
+      # @user.save
+    end
+
   end
 
   private
@@ -24,4 +32,3 @@ class Api::V1::UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
-end
