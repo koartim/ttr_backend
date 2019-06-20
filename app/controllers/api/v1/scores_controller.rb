@@ -1,9 +1,19 @@
 class Api::V1::ScoresController < ApplicationController
   before_action :find_score, only: [:update]
+
   def index
     @scores = Score.all
     render json: @scores
   end
+
+  def create
+    @score = Score.create(score_params)
+    render json: @score
+  end
+
+  def show
+    @score = Score.find(params[:id])
+    render json: @score
 
   def update
     @score.update(score_params)
